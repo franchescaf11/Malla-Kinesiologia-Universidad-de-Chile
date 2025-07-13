@@ -46,3 +46,9 @@ main {
     color: #888;
     cursor: not-allowed;
 }
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 20px;
+}
