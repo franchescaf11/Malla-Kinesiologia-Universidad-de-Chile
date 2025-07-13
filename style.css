@@ -1,54 +1,45 @@
 body {
-    background-color: #ffd1e1;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffe6f0;
+  margin: 0;
+  padding: 0;
 }
 header {
-    background-color: #ff75b5;
-    color: white;
-    text-align: center;
-    padding: 2rem 1rem;
-}
-main {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 2rem;
-}
-.semestre {
-    margin: 0 1rem;
-    min-width: 200px;
-}
-.semestre h3 {
-    text-align: center;
-    background-color: #ffa3d1;
-    border-radius: 10px;
-    padding: 0.5rem;
-}
-.ramo {
-    background-color: #ffb7d5;
-    margin: 0.5rem 0;
-    padding: 0.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    user-select: none;
-}
-.ramo.aprobado {
-    background-color: #d8b1ff;
-    text-decoration: line-through;
-}
-.ramo.bloqueado {
-    background-color: #d8d8d8;
-    color: #888;
-    cursor: not-allowed;
+  background-color: #ff66b2;
+  color: white;
+  text-align: center;
+  padding: 30px 10px;
 }
 .container {
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
   padding: 20px;
+}
+.semestre {
+  background-color: #ff99cc;
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 250px;
+}
+.semestre h3 {
+  text-align: center;
+}
+.ramo {
+  margin: 6px 0;
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #ff3399;
+  color: white;
+}
+.ramo.aprobado {
+  background-color: #800080;
+  text-decoration: line-through;
+}
+.ramo.bloqueado {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
