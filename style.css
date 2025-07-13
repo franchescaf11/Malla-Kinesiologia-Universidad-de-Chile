@@ -1,45 +1,51 @@
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #ffe6f0;
-  margin: 0;
-  padding: 0;
+    background-color: #ffe6f2;
+    font-family: Arial, sans-serif;
+    text-align: center;
 }
-header {
-  background-color: #ff66b2;
-  color: white;
-  text-align: center;
-  padding: 30px 10px;
+h1 {
+    color: white;
+    background-color: #ff66b2;
+    padding: 20px;
+    margin: 0;
 }
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  padding: 20px;
+h2 {
+    color: white;
+    background-color: #ff66b2;
+    margin: 0;
+    padding-bottom: 20px;
+}
+.malla-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
 }
 .semestre {
-  background-color: #ff99cc;
-  padding: 10px;
-  border-radius: 10px;
-  min-width: 250px;
+    flex: 0 0 auto;
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffcce0;
+    border-radius: 10px;
 }
 .semestre h3 {
-  text-align: center;
+    background-color: #ff99cc;
+    padding: 10px;
+    border-radius: 10px;
 }
 .ramo {
-  margin: 6px 0;
-  padding: 8px;
-  border-radius: 6px;
-  text-align: center;
-  cursor: pointer;
-  background-color: #ff3399;
-  color: white;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fuchsia;
+    color: white;
+    cursor: pointer;
 }
 .ramo.aprobado {
-  background-color: #800080;
-  text-decoration: line-through;
+    background-color: purple;
+    text-decoration: line-through;
 }
 .ramo.bloqueado {
-  background-color: #ccc;
-  cursor: not-allowed;
+    background-color: gray;
+    cursor: not-allowed;
 }
