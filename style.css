@@ -1,52 +1,48 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #ffe6f0;
-  margin: 0;
-  padding: 0;
+    background-color: #ffd1e1;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 header {
-  text-align: center;
-  padding: 20px;
-  background-color: #ff99cc;
-  color: white;
+    background-color: #ff75b5;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
 }
-#malla {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding: 20px;
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 2rem;
 }
 .semestre {
-  background-color: #ffe6f0;
-  border-radius: 10px;
-  margin: 0 10px;
-  padding: 10px;
-  min-width: 200px;
+    margin: 0 1rem;
+    min-width: 200px;
 }
 .semestre h3 {
-  text-align: center;
-  color: #cc0066;
+    text-align: center;
+    background-color: #ffa3d1;
+    border-radius: 10px;
+    padding: 0.5rem;
 }
 .ramo {
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 8px;
-  color: white;
-  text-align: center;
+    background-color: #ffb7d5;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
 }
-.aprobado {
-  background-color: #b266b2;
-  text-decoration: line-through;
+.ramo.aprobado {
+    background-color: #d8b1ff;
+    text-decoration: line-through;
 }
-.no-aprobado {
-  background-color: #d9d9d9;
-  color: #999;
-}
-.desbloqueado {
-  background-color: #ff4da6;
-  cursor: pointer;
-}
-.bloqueado {
-  background-color: #ccc;
-  cursor: not-allowed;
+.ramo.bloqueado {
+    background-color: #d8d8d8;
+    color: #888;
+    cursor: not-allowed;
 }
