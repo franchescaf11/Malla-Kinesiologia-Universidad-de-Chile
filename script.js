@@ -1,52 +1,64 @@
+const malla = document.getElementById("malla");
 
 const ramos = {
-  // Estructura {nombre: {semestre, prerrequisitos: [nombres]}}
-  "Física": { semestre: 1, prerrequisitos: [] },
-  "Bases Integradas de Química, Bioquímica, Biología Celular y Genética": { semestre: 1, prerrequisitos: [] },
-  "Fisiología General": { semestre: 2, prerrequisitos: ["Bases Integradas de Química, Bioquímica, Biología Celular y Genética", "Física"] },
-  "Neuroanatomía": { semestre: 2, prerrequisitos: [] },
-  "Bases Integradas de Infectología, Inmunología y Farmacología General": { semestre: 3, prerrequisitos: ["Neuroanatomía", "Fisiología General"] },
-  // Puedes agregar más aquí...
+    "Semestre 1": [
+        { nombre: "Bases Integradas de Química, Bioquímica, Biología Celular y Genética" },
+        { nombre: "Anatomía estructural y funcional l" },
+        { nombre: "Estructura y Función Tisular" },
+        { nombre: "Física" },
+        { nombre: "Estrategias de Búsqueda Bibliográfica" },
+        { nombre: "Introducción a la Kinesiología" }
+    ],
+    "Semestre 2": [
+        { nombre: "Anatomía Estructural y Funcional ll", prerequisitos: ["Anatomía estructural y funcional l"] },
+        { nombre: "Fisiología General", prerequisitos: ["Bases Integradas de Química, Bioquímica, Biología Celular y Genética", "Física"] },
+        { nombre: "Neuroanatomía" },
+        { nombre: "Biomecánica, Lesión y Reparación Tisular", prerequisitos: ["Estructura y Función Tisular"] },
+        { nombre: "Introducción al estudio del Movimiento Humano" },
+        { nombre: "Principios de Evolución" },
+        { nombre: "Lectura Comprensiva de Artículos Científicos" }
+    ]
 };
 
-const totalSemestres = 10;
-const container = document.getElementById("mallaContainer");
-const estadoRamos = JSON.parse(localStorage.getItem("estadoRamos") || "{}");
+const estadoRamos = {};
 
-function crearMalla() {
-  for (let i = 1; i <= totalSemestres; i++) {
-    const col = document.createElement("div");
-    col.className = "semestre";
-    col.innerHTML = `<h3>Semestre ${i}</h3>`;
-    for (const [ramo, datos] of Object.entries(ramos)) {
-      if (datos.semestre === i) {
-        const div = document.createElement("div");
-        div.className = "ramo";
-        div.textContent = ramo;
+function puedeDesbloquear(prerqs) {
+    return !prerqs || prerqs.every(pr => estadoRamos[pr] === "aprobado");
+}
 
-        if (estadoRamos[ramo]) {
-          div.classList.add("aprobado");
-        } else if (!cumplePrerrequisitos(ramo)) {
-          div.classList.add("bloqueado");
-        }
+function render() {
+    malla.innerHTML = "";
+    for (const [semestre, ramosSemestre] of Object.entries(ramos)) {
+        const col = document.createElement("div");
+        col.className = "semestre";
+        const title = document.createElement("h3");
+        title.textContent = semestre;
+        col.appendChild(title);
 
-        div.onclick = () => {
-          if (div.classList.contains("bloqueado")) return;
-          div.classList.toggle("aprobado");
-          estadoRamos[ramo] = div.classList.contains("aprobado");
-          localStorage.setItem("estadoRamos", JSON.stringify(estadoRamos));
-          location.reload();
-        };
+        ramosSemestre.forEach(ramo => {
+            const div = document.createElement("div");
+            div.textContent = ramo.nombre;
+            const estado = estadoRamos[ramo.nombre];
 
-        col.appendChild(div);
-      }
+            if (estado === "aprobado") {
+                div.className = "ramo aprobado";
+            } else if (!puedeDesbloquear(ramo.prerequisitos)) {
+                div.className = "ramo bloqueado";
+            } else {
+                div.className = "ramo pendiente";
+            }
+
+            div.addEventListener("click", () => {
+                if (!puedeDesbloquear(ramo.prerequisitos)) return;
+                estadoRamos[ramo.nombre] = estadoRamos[ramo.nombre] === "aprobado" ? "pendiente" : "aprobado";
+                render();
+            });
+
+            col.appendChild(div);
+        });
+
+        malla.appendChild(col);
     }
-    container.appendChild(col);
-  }
 }
 
-function cumplePrerrequisitos(ramo) {
-  return ramos[ramo].prerrequisitos.every(pr => estadoRamos[pr]);
-}
-
-crearMalla();
+render();
