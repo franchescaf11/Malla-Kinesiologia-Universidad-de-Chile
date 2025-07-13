@@ -1,110 +1,79 @@
-
-const malla = document.getElementById("malla");
-
-const semestres = {
-    "Semestre 1": [
-        "Bases Integradas de Química, Bioquímica, Biología Celular y Genética",
-        "Anatomía estructural y funcional I",
-        "Estructura y Función Tisular",
-        "Física",
-        "Estrategias de Búsqueda Bibliográfica",
-        "Introducción a la Kinesiología"
+document.addEventListener('DOMContentLoaded', function () {
+  const prerrequisitos = {
+    "Fisiología General": ["Bases Integradas de Química, Bioquímica, Biología Celular y Genética", "Física"],
+    "Bases Integradas de Infectología, Inmunología y Farmacología General": ["Neuroanatomía", "Fisiología General"],
+    "Biomecánica, Lesión y Reparación Tisular": ["Estructura y Función Tisular"],
+    "Examen Kinésico Básico": ["Anatomía estructural y funcional I", "Anatomía estructural y funcional II"],
+    "Procedimientos Terapéuticos Básicos y Generales": ["Introducción al estudio del Movimiento Humano", "Examen Kinésico Básico"],
+    "Educación Física II": ["Educación Física I"],
+    "Fisiología de Sistemas": ["Fisiología General"],
+    "Fisiopatología y Farmacología de Sistemas": ["Fisiología de Sistemas", "Bases Integradas de Infectología, Inmunología y Farmacología General"],
+    "Evaluación e Intervención en la Neurokinesiología I": ["Kinesiología del Desarrollo Psicomotor"],
+    "Efectos de la actividad Física en la salud": ["Examen de la Condición Física y la Conducta Motora", "Fisiopatología y Farmacología de Sistemas"],
+    "Actividad Física y Deportes": ["Educación Física I", "Efectos de la actividad Física en la salud"],
+    "Evaluación e Intervención en Cuidados Respiratorios I": ["Examen de la Condición Física y la Conducta Motora"],
+    "Evaluación e Intervención en Musculoesquelético I": ["Procedimientos Terapéuticos Básicos y Generales"],
+    "Evaluación e Intervención en la Neurokinesiología II": ["Evaluación e Intervención en la Neurokinesiología I"],
+    "Evaluación e Intervención en Musculoesquelético II": ["Evaluación e Intervención en Musculoesquelético I"],
+    "Evaluación e Intervención en Cuidados Respiratorios II": ["Evaluación e Intervención en Cuidados Respiratorios I"],
+    "Razonamiento Clínico": [
+      "Evaluación e Intervención en Cuidados Respiratorios I",
+      "Evaluación e Intervención en Musculoesquelético I",
+      "Evaluación e Intervención en la Neurokinesiología I"
     ],
-    "Semestre 2": [
-        "Anatomía Estructural y Funcional II",
-        "Fisiología General",
-        "Neuroanatomía",
-        "Biomecánica, Lesión y Reparación Tisular",
-        "Introducción al estudio del Movimiento Humano",
-        "Principios de Evolución",
-        "Lectura Comprensiva de Artículos Científicos"
+    "Estrategias Deportivas y Recreativas": ["Actividad Física y Deportes"],
+    "Estrategias Deportivas y Recreativas Aplicadas": ["Estrategias Deportivas y Recreativas"],
+    "Intervención Profesional en Contexto I": [
+      "Efectos de la actividad Física en la salud",
+      "Evaluación e Intervención en Cuidados Respiratorios II",
+      "Evaluación e Intervención en Musculoesquelético II",
+      "Evaluación e Intervención en la Neurokinesiología II"
     ],
-    "Semestre 3": [
-        "Fisiología de Sistemas",
-        "Bases Integradas de Infectología, Inmunología y Farmacología General",
-        "Examen Kinésico Básico",
-        "Control y Aprendizaje Motor",
-        "Fundamentos de la Investigación Científica",
-        "Educación Física I"
+    "Intervención Profesional en Contexto II": [
+      "Evaluación e Intervención en Cuidados Respiratorios II",
+      "Evaluación e Intervención en Musculoesquelético II",
+      "Evaluación e Intervención en la Neurokinesiología II"
     ],
-    "Semestre 4": [
-        "Fisiopatología y Farmacología de Sistemas",
-        "Examen de la Condición Física y la Conducta Motora",
-        "Procedimientos Terapéuticos Básicos y Generales",
-        "Kinesiología del Desarrollo Psicomotor",
-        "Lectura Critica de Artículos Científicos",
-        "Análisis Epidemiológico"
+    "Análisis de la Relación Persona Entorno": [
+      "Evaluación e Intervención en Cuidados Respiratorios II",
+      "Evaluación e Intervención en Musculoesquelético II",
+      "Evaluación e Intervención en la Neurokinesiología II"
     ],
-    "Semestre 5": [
-        "Efectos de la actividad Fisica en la salud",
-        "Evaluación e Intervención en la Neurokinesiología I",
-        "Evaluación e Intervención en Cuidados Respiratorios I",
-        "Evaluación e Intervención en Musculoesquelético I",
-        "Revisión Bibliográfica",
-        "Análisis del Modelo de Salud Chileno",
-        "Modulo Integrado Interdisciplinario y Multiprofesional I",
-        "Educación Física II",
-        "Inglés IV"
-    ],
-    "Semestre 6": [
-        "Evaluación e Intervención en la Neurokinesiología II",
-        "Evaluación e Intervención en Cuidados Respiratorios II",
-        "Evaluación e Intervención en Musculoesquelético II",
-        "Razonamiento Clínico",
-        "Diseño y Formulación de Proyectos de Investigación",
-        "Responsabilidad del Ejercicio Profesional",
-        "Actividad Física y Deportes"
-    ],
-    "Semestre 7": [
-        "Intervención Profesional en Contexto I",
-        "Estrategias Deportivas y Recreativas",
-        "Análisis de la Relación Persona Entorno",
-        "Determinantes Sociales de la Salud",
-        "Ejecución de Proyectos de Investigación I",
-        "Conceptos Básicos de Administración en Salud",
-        "Metodologías de Enseñanza Aprendizaje"
-    ],
-    "Semestre 8": [
-        "Intervención Profesional en Contexto II",
-        "Estrategias Deportivas y Recreativas Aplicadas",
-        "Evaluación Ergonómica",
-        "Programas de Promoción y Prevención en Salud",
-        "Ejecución de Proyectos de Investigación II",
-        "Proyectos de Emprendimientos",
-        "Aplicación Básica de Metodologías Docentes",
-        "Modulo Integrado Interdisciplinario y Multiprofesional II"
-    ],
-    "Semestre 9 y 10": [
-        "Intervención Profesional I",
-        "Intervención Profesional II",
-        "Proyectos de Intervención Ergonómica",
-        "Intervención en Salud Comunitaria",
-        "Cursos de Profundización Diciplinar y Profesional",
-        "Comunicación Científica",
-        "Administración en Salud"
+    "Evaluación Ergonómica": ["Análisis de la Relación Persona Entorno"],
+    "Proyectos de Intervención Ergonómica": ["Evaluación Ergonómica"],
+    "Intervención Profesional I": ["Intervención Profesional en Contexto II"],
+    "Intervención Profesional II": ["Intervención Profesional I"],
+    "Cursos de Profundización Diciplinar y Profesional": [
+      "Intervención Profesional en Contexto I",
+      "Intervención Profesional en Contexto II"
     ]
-};
+  };
 
-function crearMalla() {
-    Object.entries(semestres).forEach(([semestre, ramos]) => {
-        const col = document.createElement("div");
-        col.className = "semestre";
-        const titulo = document.createElement("h3");
-        titulo.textContent = semestre;
-        col.appendChild(titulo);
-        ramos.forEach(ramo => {
-            const div = document.createElement("div");
-            div.className = "ramo";
-            div.textContent = ramo;
-            div.onclick = () => {
-                if (!div.classList.contains("bloqueado")) {
-                    div.classList.toggle("aprobado");
-                }
-            };
-            col.appendChild(div);
-        });
-        malla.appendChild(col);
+  const ramos = document.querySelectorAll('.ramo');
+
+  ramos.forEach(ramo => {
+    const nombre = ramo.textContent.trim();
+    const requisitos = prerrequisitos[nombre] || [];
+
+    const cumplido = requisitos.every(req => {
+      const reqElem = [...ramos].find(r => r.textContent.trim() === req);
+      return reqElem && reqElem.classList.contains('aprobado');
     });
-}
 
-crearMalla();
+    if (ramo.classList.contains('aprobado')) {
+      return;
+    }
+
+    if (cumplido) {
+      ramo.classList.remove('bloqueado');
+      ramo.classList.add('desbloqueado');
+      ramo.addEventListener('click', () => {
+        ramo.classList.toggle('aprobado');
+        ramo.classList.toggle('desbloqueado');
+        location.reload();
+      });
+    } else {
+      ramo.classList.add('bloqueado');
+    }
+  });
+});
