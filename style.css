@@ -1,44 +1,52 @@
 body {
-  background-color: #ffddee;
   font-family: Arial, sans-serif;
+  background-color: #ffe6f0;
+  margin: 0;
+  padding: 0;
 }
 header {
-  background-color: #ff80b3;
-  color: white;
   text-align: center;
-  padding: 1em;
+  padding: 20px;
+  background-color: #ff99cc;
+  color: white;
 }
 #malla {
   display: flex;
-  gap: 1em;
-  padding: 1em;
+  flex-wrap: nowrap;
   overflow-x: auto;
+  padding: 20px;
 }
 .semestre {
-  min-width: 250px;
-  background-color: #fff0f5;
-  border-radius: 8px;
-  padding: 1em;
-  flex-shrink: 0;
+  background-color: #ffe6f0;
+  border-radius: 10px;
+  margin: 0 10px;
+  padding: 10px;
+  min-width: 200px;
 }
 .semestre h3 {
   text-align: center;
   color: #cc0066;
 }
 .ramo {
-  background-color: #f48fb1;
-  padding: 0.5em;
-  margin: 0.3em 0;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.ramo.aprobado {
-  background-color: #b266ff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 8px;
   color: white;
+  text-align: center;
+}
+.aprobado {
+  background-color: #b266b2;
   text-decoration: line-through;
 }
-.ramo.bloqueado {
-  background-color: #cccccc;
-  color: #666666;
+.no-aprobado {
+  background-color: #d9d9d9;
+  color: #999;
+}
+.desbloqueado {
+  background-color: #ff4da6;
+  cursor: pointer;
+}
+.bloqueado {
+  background-color: #ccc;
   cursor: not-allowed;
 }
